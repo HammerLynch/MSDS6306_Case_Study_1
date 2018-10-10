@@ -28,6 +28,8 @@ National craft beer distributor
 
 7.	Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
 
-### Presentation Method:
+### Deliverables:
 Microsoft Powerpoint
+Executable Code (markdown)
+Codebook
 
