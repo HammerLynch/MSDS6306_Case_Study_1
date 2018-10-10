@@ -30,6 +30,8 @@ National craft beer distributor
 
 ### Deliverables:
 Microsoft Powerpoint
+
 Executable Code (markdown)
+
 Codebook
 
