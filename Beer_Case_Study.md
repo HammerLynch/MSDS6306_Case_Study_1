@@ -76,8 +76,17 @@ brews_state
     ## # ... with 41 more rows
 
 ``` r
+p.state <- ggplot(data=brews_state, aes(x=State, y=n, fill=State))
+p.state <- p.state + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
+p.state <- p.state + geom_text(aes(label=n), vjust=1.6, position = position_dodge(0.9), size=2.5)
+p.state
+```
+
+![](Beer_Case_Study_files/figure-markdown_github/Question_1-1.png)
+
+``` r
 # Output brews_state data to csv for Excel charts for presentation
-state.data <- "Case_Study_1_files/state.csv"
+state.data <- "Beer_Case_Study_files/state.csv"
 write.csv(brews_state, file = state.data)
 ```
 
@@ -152,7 +161,7 @@ sapply(both, function(x) {sum(is.na(x))})
 ABV_IBU <- both %>% group_by(State) %>% summarise(ABV = median(ABV, na.rm = TRUE), IBU = median(IBU, na.rm = TRUE))
 
 # Output ABV_IBU data by state to csv for Excel charts for presentation
-ABV.IBU.data <- "Case_Study_1_files/ABV_IBU_by_State.csv"
+ABV.IBU.data <- "Beer_Case_Study_files/ABV_IBU_by_State.csv"
 write.csv(ABV_IBU, file = ABV.IBU.data)
 
 p.ABV <- ggplot(data=ABV_IBU, aes(x=State, y=ABV, fill=State))
@@ -161,7 +170,7 @@ p.ABV <- p.ABV + geom_text(aes(label=ABV), vjust=1.6, position = position_dodge(
 p.ABV
 ```
 
-![](Case_Study_1_files/figure-markdown_github/Question_4-1.png)
+![](Beer_Case_Study_files/figure-markdown_github/Question_4-1.png)
 
 ``` r
 p.IBU <- ggplot(data=ABV_IBU, aes(x=State, y=IBU, fill=State))
@@ -174,7 +183,7 @@ p.IBU
 
     ## Warning: Removed 1 rows containing missing values (geom_text).
 
-![](Case_Study_1_files/figure-markdown_github/Question_4-2.png)
+![](Beer_Case_Study_files/figure-markdown_github/Question_4-2.png)
 
 5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
 ------------------------------------------------------------------------------------------------
@@ -221,11 +230,11 @@ p.ABU_IBU <- p.ABV_IBU + geom_smooth(method=lm)
 p.ABU_IBU
 ```
 
-![](Case_Study_1_files/figure-markdown_github/Question_7-1.png)
+![](Beer_Case_Study_files/figure-markdown_github/Question_7-1.png)
 
 ``` r
 # Output ABV_IBU full data to csv for Excel charts for presentation
 outputlink<- lmABV_IBU[,3:4]
-linkData.data <- "Case_Study_1_files/ABV_IBU_link.csv"
+linkData.data <- "Beer_Case_Study_files/ABV_IBU_link.csv"
 write.csv(outputlink, file = linkData.data)
 ```
