@@ -1,5 +1,33 @@
 Beer Case Study
 ================
+Satish, Tyler, Thotho
+October 14, 2018
+
+GitHub:<https://github.com/HammerLynch/MSDS6306_Case_Study_1>
+
+R-version info
+
+``` r
+version
+```
+
+    ##                _                           
+    ## platform       x86_64-w64-mingw32          
+    ## arch           x86_64                      
+    ## os             mingw32                     
+    ## system         x86_64, mingw32             
+    ## status                                     
+    ## major          3                           
+    ## minor          5.1                         
+    ## year           2018                        
+    ## month          07                          
+    ## day            02                          
+    ## svn rev        74947                       
+    ## language       R                           
+    ## version.string R version 3.5.1 (2018-07-02)
+    ## nickname       Feather Spray
+
+Code for gathering data.
 
 ``` r
 require(plyr)
@@ -76,6 +104,7 @@ brews_state
     ## # ... with 41 more rows
 
 ``` r
+#code for storing and output of ggplot - rainbow bars - black text
 p.state <- ggplot(data=brews_state, aes(x=State, y=n, fill=State))
 p.state <- p.state + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.state <- p.state + geom_text(aes(label=n), vjust=1.6, position = position_dodge(0.9), size=2.5)
@@ -158,12 +187,14 @@ sapply(both, function(x) {sum(is.na(x))})
 --------------------------------------------------------------------------------------------------------------------
 
 ``` r
+#consolidate ABV and IBU data into one
 ABV_IBU <- both %>% group_by(State) %>% summarise(ABV = median(ABV, na.rm = TRUE), IBU = median(IBU, na.rm = TRUE))
 
 # Output ABV_IBU data by state to csv for Excel charts for presentation
 ABV.IBU.data <- "Beer_Case_Study_files/ABV_IBU_by_State.csv"
 write.csv(ABV_IBU, file = ABV.IBU.data)
 
+#code for storing and output of ggplot - rainbow bars - black text
 p.ABV <- ggplot(data=ABV_IBU, aes(x=State, y=ABV, fill=State))
 p.ABV <- p.ABV + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.ABV <- p.ABV + geom_text(aes(label=ABV), vjust=1.6, position = position_dodge(0.9), size=2.5)
@@ -173,6 +204,7 @@ p.ABV
 ![](Beer_Case_Study_files/figure-markdown_github/Question_4-1.png)
 
 ``` r
+#code for storing and output of ggplot - rainbow bars - black text
 p.IBU <- ggplot(data=ABV_IBU, aes(x=State, y=IBU, fill=State))
 p.IBU <- p.IBU + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.IBU <- p.IBU + geom_text(aes(label=IBU), vjust=1.6, position = position_dodge(0.9), size=2.5)
@@ -189,6 +221,7 @@ p.IBU
 ------------------------------------------------------------------------------------------------
 
 ``` r
+#Determine max ABV and IBU
 maxABV_IBU <- both %>% group_by(State) %>% summarise(ABV = max(ABV, na.rm = TRUE), IBU = max(IBU, na.rm = TRUE))
 maxABV <- maxABV_IBU %>% filter(ABV == max(ABV))
 maxIBU <- maxABV_IBU %>% filter(IBU == max(IBU))
@@ -214,6 +247,7 @@ maxIBU[, c(1,3)]
 ------------------------------------------
 
 ``` r
+# Output summary of ABV
 summary(both$ABV)
 ```
 
@@ -224,6 +258,7 @@ summary(both$ABV)
 -----------------------------------------------------------------------------------------------------------------------
 
 ``` r
+# Create data set with no NAs
 lmABV_IBU <- na.omit(both)
 p.ABV_IBU <- ggplot(lmABV_IBU, aes(x = ABV, y = IBU), na.rm = TRUE) + geom_point(na.rm = TRUE) + geom_rug() 
 p.ABU_IBU <- p.ABV_IBU + geom_smooth(method=lm)

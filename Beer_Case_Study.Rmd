@@ -1,13 +1,21 @@
 ---
 title: "Beer Case Study"
+author: "Satish, Tyler, Thotho"
+date: "October 14, 2018"
 output: github_document
 ---
+GitHub:https://github.com/HammerLynch/MSDS6306_Case_Study_1
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+R-version info
+```{r VersionData}
+version
+```
 
+Code for gathering data.
 ```{r GatherData}
 require(plyr)
 require(dplyr)
@@ -30,6 +38,7 @@ both <- beers %>% inner_join(breweries, by = c("Brewery_id" = "Brew_ID"))
 brews_state <- breweries %>% group_by(State) %>% count()
 brews_state
 
+#code for storing and output of ggplot - rainbow bars - black text
 p.state <- ggplot(data=brews_state, aes(x=State, y=n, fill=State))
 p.state <- p.state + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.state <- p.state + geom_text(aes(label=n), vjust=1.6, position = position_dodge(0.9), size=2.5)
@@ -63,18 +72,20 @@ sapply(both, function(x) {sum(is.na(x))})
 ## 4. Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 
 ```{r Question_4}
+#consolidate ABV and IBU data into one
 ABV_IBU <- both %>% group_by(State) %>% summarise(ABV = median(ABV, na.rm = TRUE), IBU = median(IBU, na.rm = TRUE))
 
 # Output ABV_IBU data by state to csv for Excel charts for presentation
 ABV.IBU.data <- "Beer_Case_Study_files/ABV_IBU_by_State.csv"
 write.csv(ABV_IBU, file = ABV.IBU.data)
 
+#code for storing and output of ggplot - rainbow bars - black text
 p.ABV <- ggplot(data=ABV_IBU, aes(x=State, y=ABV, fill=State))
 p.ABV <- p.ABV + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.ABV <- p.ABV + geom_text(aes(label=ABV), vjust=1.6, position = position_dodge(0.9), size=2.5)
 p.ABV
 
-
+#code for storing and output of ggplot - rainbow bars - black text
 p.IBU <- ggplot(data=ABV_IBU, aes(x=State, y=IBU, fill=State))
 p.IBU <- p.IBU + geom_bar(stat="identity", color="black", position=position_dodge())+theme_minimal()
 p.IBU <- p.IBU + geom_text(aes(label=IBU), vjust=1.6, position = position_dodge(0.9), size=2.5)
@@ -86,6 +97,7 @@ p.IBU
 ## 5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
 
 ```{r Question_5}
+#Determine max ABV and IBU
 maxABV_IBU <- both %>% group_by(State) %>% summarise(ABV = max(ABV, na.rm = TRUE), IBU = max(IBU, na.rm = TRUE))
 maxABV <- maxABV_IBU %>% filter(ABV == max(ABV))
 maxIBU <- maxABV_IBU %>% filter(IBU == max(IBU))
@@ -97,6 +109,7 @@ maxIBU[, c(1,3)]
 ## 6. Summary statistics for the ABV variable
 
 ```{r Question_6}
+# Output summary of ABV
 summary(both$ABV)
 ```
 
@@ -104,6 +117,7 @@ summary(both$ABV)
 ## 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
 
 ```{r Question_7}
+# Create data set with no NAs
 lmABV_IBU <- na.omit(both)
 p.ABV_IBU <- ggplot(lmABV_IBU, aes(x = ABV, y = IBU), na.rm = TRUE) + geom_point(na.rm = TRUE) + geom_rug() 
 p.ABU_IBU <- p.ABV_IBU + geom_smooth(method=lm)
