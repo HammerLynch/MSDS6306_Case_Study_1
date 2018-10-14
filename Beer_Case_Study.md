@@ -1,4 +1,4 @@
-Untitled
+Beer Case Study
 ================
 
 ``` r
@@ -42,8 +42,8 @@ require(ggplot2)
     ## Loading required package: ggplot2
 
 ``` r
-beers <- read.csv("Beers.csv",stringsAsFactor=FALSE)
-breweries <- read.csv("Breweries.csv",stringsAsFactor=FALSE)
+beers <- read.csv("Dataset/Beers.csv",stringsAsFactor=FALSE)
+breweries <- read.csv("Dataset/Breweries.csv",stringsAsFactor=FALSE)
 
 # Assign column names
 colnames(beers) <- c("Beer","Beer_ID","ABV","IBU","Brewery_id","Style","Ounces")

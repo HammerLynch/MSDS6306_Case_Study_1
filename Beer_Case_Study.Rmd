@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Beer Case Study"
 output: github_document
 ---
 
@@ -14,8 +14,8 @@ require(dplyr)
 require(tidyr)
 require(ggplot2)
 
-beers <- read.csv("Beers.csv",stringsAsFactor=FALSE)
-breweries <- read.csv("Breweries.csv",stringsAsFactor=FALSE)
+beers <- read.csv("Dataset/Beers.csv",stringsAsFactor=FALSE)
+breweries <- read.csv("Dataset/Breweries.csv",stringsAsFactor=FALSE)
 
 # Assign column names
 colnames(beers) <- c("Beer","Beer_ID","ABV","IBU","Brewery_id","Style","Ounces")
