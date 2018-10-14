@@ -1,0 +1,314 @@
+---
+title: "Codebook for beers"
+date: "2018-10-13 17:34:56"
+output:
+  html_document:
+    df_print: paged
+subtitle: Team (Satish, Tyler, Thotho)
+dataMaid: yes
+---
+```{r , echo=FALSE, include=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+library("ggplot2")
+library("pander")
+```
+```{r 'visualFunctions', echo=FALSE, include=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+ggAggHist <- getFromNamespace("ggAggHist", "dataMaid")
+ggAggBarplot <- getFromNamespace("ggAggBarplot", "dataMaid")
+```
+# Data report overview
+The dataset examined has the following dimensions:
+
+
+---------------------------------
+Feature                    Result
+------------------------ --------
+Number of observations       2410
+
+Number of variables             7
+---------------------------------
+
+
+
+
+# Codebook summary table
+
+------------------------------------------------------------------------
+Label   Variable            Class       # unique  Missing  Description  
+                                          values                        
+------- ------------------- --------- ---------- --------- -------------
+        **[Name]**          factor          2305  0.00 %    Name of the beer            
+
+        **[Beer\_ID]**      integer         2410  0.00 %    Unique identifier of the beer            
+
+        **[ABV]**           numeric           75  2.57 %    Alcohol by volume of the beer.            
+
+        **[IBU]**           integer          108  41.70 %   International Bitterness Units of the beer.            
+
+        **[Brewery\_id]**   integer          558  0.00 %    Brewery id associated with the beer.            
+
+        **[Style]**         factor           100  0.00 %    Style of the beer            
+
+        **[Ounces]**        numeric            7  0.00 %    Ounces of beer            
+------------------------------------------------------------------------
+
+
+
+
+# Variable list
+## Name
+
+<div class = "row">
+<div class = "col-lg-8">
+
+---------------------------------------------------
+Feature                                      Result
+------------------------- -------------------------
+Variable type                                factor
+
+Number of missing obs.                      0 (0 %)
+
+Number of unique values                        2305
+
+Mode                              "Nonstop Hef Hop"
+
+Reference category          #001 Golden Amber Lager
+---------------------------------------------------
+
+
+</div>
+
+</div>
+
+
+
+
+---
+
+## Beer\_ID
+
+<div class = "row">
+<div class = "col-lg-8">
+
+-------------------------------------------
+Feature                              Result
+------------------------- -----------------
+Variable type                       integer
+
+Number of missing obs.              0 (0 %)
+
+Number of unique values                2410
+
+Median                               1453.5
+
+1st and 3rd quartiles       808.25; 2075.75
+
+Min. and max.                       1; 2692
+-------------------------------------------
+
+
+</div>
+<div class = "col-lg-4">
+```{r 'Var-2-Beer-ID', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(0, 200, 400, 600, 800, 
+1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600), xmax = c(200, 
+400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 
+2600, 2800), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+0), ymax = c(162L, 87L, 165L, 181L, 172L, 194L, 194L, 190L, 198L, 
+191L, 190L, 197L, 200L, 89L)), class = "data.frame", row.names = c(NA, 
+-14L)), vnam = "Beer_ID")
+```
+</div>
+</div>
+
+
+
+
+---
+
+## ABV
+
+<div class = "row">
+<div class = "col-lg-8">
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.      62 (2.57 %)
+
+Number of unique values              74
+
+Median                             0.06
+
+1st and 3rd quartiles        0.05; 0.07
+
+Min. and max.                   0; 0.13
+---------------------------------------
+
+
+</div>
+<div class = "col-lg-4">
+```{r 'Var-3-ABV', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(0, 0.01, 0.02, 0.03, 
+0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12), xmax = c(0.01, 
+0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 
+0.13), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+0L, 3L, 73L, 599L, 780L, 483L, 216L, 109L, 80L, 1L, 1L, 2L)), class = "data.frame", row.names = c(NA, 
+-13L)), vnam = "ABV")
+```
+</div>
+</div>
+
+
+
+
+---
+
+## IBU
+
+<div class = "row">
+<div class = "col-lg-8">
+
+-----------------------------------------
+Feature                            Result
+------------------------- ---------------
+Variable type                     integer
+
+Number of missing obs.      1005 (41.7 %)
+
+Number of unique values               107
+
+Median                                 35
+
+1st and 3rd quartiles              21; 64
+
+Min. and max.                      4; 138
+-----------------------------------------
+
+
+</div>
+<div class = "col-lg-4">
+```{r 'Var-4-IBU', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(0, 10, 20, 30, 40, 50, 
+60, 70, 80, 90, 100, 110, 120, 130), xmax = c(10, 20, 30, 40, 
+50, 60, 70, 80, 90, 100, 110, 120, 130, 140), ymin = c(0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(58L, 280L, 275L, 
+187L, 137L, 102L, 153L, 78L, 61L, 48L, 11L, 11L, 2L, 2L)), class = "data.frame", row.names = c(NA, 
+-14L)), vnam = "IBU")
+```
+</div>
+</div>
+
+
+
+
+---
+
+## Brewery\_id
+
+<div class = "row">
+<div class = "col-lg-8">
+
+-----------------------------------
+Feature                      Result
+------------------------- ---------
+Variable type               integer
+
+Number of missing obs.      0 (0 %)
+
+Number of unique values         558
+
+Median                          206
+
+1st and 3rd quartiles       94; 367
+
+Min. and max.                1; 558
+-----------------------------------
+
+
+</div>
+<div class = "col-lg-4">
+```{r 'Var-5-Brewery-id', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(0, 50, 100, 150, 200, 
+250, 300, 350, 400, 450, 500, 550), xmax = c(50, 100, 150, 200, 
+250, 300, 350, 400, 450, 500, 550, 600), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0), ymax = c(372L, 253L, 270L, 283L, 195L, 
+180L, 176L, 247L, 155L, 136L, 129L, 14L)), class = "data.frame", row.names = c(NA, 
+-12L)), vnam = "Brewery_id")
+```
+</div>
+</div>
+
+
+
+
+---
+
+## Style
+
+<div class = "row">
+<div class = "col-lg-8">
+
+------------------------------------------
+Feature                             Result
+------------------------- ----------------
+Variable type                       factor
+
+Number of missing obs.             0 (0 %)
+
+Number of unique values                100
+
+Mode                        "American IPA"
+
+Reference category                        
+------------------------------------------
+
+
+</div>
+
+</div>
+
+---
+
+## Ounces
+
+<div class = "row">
+<div class = "col-lg-8">
+
+-----------------------------------
+Feature                      Result
+------------------------- ---------
+Variable type               numeric
+
+Number of missing obs.      0 (0 %)
+
+Number of unique values           7
+
+Median                           12
+
+1st and 3rd quartiles        12; 16
+
+Min. and max.               8.4; 32
+-----------------------------------
+
+
+</div>
+<div class = "col-lg-4">
+```{r 'Var-7-Ounces', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(8L, 10L, 12L, 14L, 16L, 
+18L, 20L, 22L, 24L, 26L, 28L, 30L), xmax = c(10L, 12L, 14L, 16L, 
+18L, 20L, 22L, 24L, 26L, 28L, 30L, 32L), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 1525L, 0L, 841L, 1L, 15L, 
+0L, 22L, 0L, 0L, 0L, 5L)), class = "data.frame", row.names = c(NA, 
+-12L)), vnam = "Ounces")
+```
+</div>
+</div>
+
+
+
+
+---
+
+
