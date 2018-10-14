@@ -9,27 +9,19 @@ Satish Mylapore
 Thotho Mabiku
 
 ### Client:
-National craft beer distributor
+Gosset Brew Crew - (Craft beer startup)
 
 ### Purpose:
-#### Present client with craft brewery data.  Answering the following questions:
+#### Present client with craft brewery data analysis and potential locations for new brewery.
 
-1.	How many breweries are present in each state?
+1.	Report on current craft breweries in the United States.
 
-2.	Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file.
+2.  Analyze ABV and IBU by state and correlation between the two.
 
-3.	Report the number of NA's in each column.
-
-4.	Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
-
-5.	Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
-
-6.	Summary statistics for the ABV variable.
-
-7.	Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+3.	Determine most ideal location for new brewery.
 
 ### Deliverables:
-Microsoft Powerpoint
+Microsoft Powerpoint Presentation
 
 Executable Code (markdown)
 
