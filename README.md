@@ -4,7 +4,7 @@ GitHub: https://github.com/HammerLynch/MSDS6306_Case_Study_1.git
 ### Team Members:
 Tyler Lynch
 
-Satish Mylapore Saravana Bhava
+Satish Mylapore
 
 Thotho Mabiku
 
