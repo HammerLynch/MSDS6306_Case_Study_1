@@ -3,12 +3,14 @@ Beer Case Study
 Satish, Tyler, Thotho
 October 14, 2018
 
-GitHub:<https://github.com/HammerLynch/MSDS6306_Case_Study_1>
+**GitHub**:<https://github.com/HammerLynch/MSDS6306_Case_Study_1>
 
-R-version info
+### R-version info
+
+Environment information where the code was executed.
 
 ``` r
-version
+R.version
 ```
 
     ##                _                           
@@ -27,7 +29,16 @@ version
     ## version.string R version 3.5.1 (2018-07-02)
     ## nickname       Feather Spray
 
-Code for gathering data.
+### Libraries and Initial Data Prepration
+
+R Libraries required for the proejct
+
+-   plyr
+-   dplyr
+-   tidyr
+-   ggplot2
+
+Once the libraries are loaded, the data sets are loaded and prepared for further analysis.
 
 ``` r
 require(plyr)
@@ -79,8 +90,9 @@ colnames(breweries) <- c("Brew_ID","Breweries","City","State")
 both <- beers %>% inner_join(breweries, by = c("Brewery_id" = "Brew_ID"))
 ```
 
-1. How many breweries are present in each state?
-------------------------------------------------
+### 1. How many breweries are present in each state?
+
+Breweries across 50 states and 1 Federal District (DC) are shown below, where the state of Colorado has the highest number of breweries (47)
 
 ``` r
 brews_state <- breweries %>% group_by(State) %>% count()
@@ -119,8 +131,9 @@ state.data <- "Beer_Case_Study_files/state.csv"
 write.csv(brews_state, file = state.data)
 ```
 
-2. Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file
----------------------------------------------------------------------------------------------------------------------------------
+### 2. Merge beer data with the breweries data. Print the first 6 observations and the last six observations to check the merged file
+
+Beers and Breweries data have been de-normalized into one set for further investigation into the data
 
 ``` r
 both <- beers %>% inner_join(breweries, by = c("Brewery_id" = "Brew_ID"))
@@ -171,8 +184,12 @@ tail(both_full,6)
     ## 2409  American Pale Ale (APA)     12 Wynkoop Brewing Company Denver    CO
     ## 2410 American Amber / Red Ale     12 Wynkoop Brewing Company Denver    CO
 
-3. Report the number of NA's in each column.
---------------------------------------------
+### 3. Report the number of NA's in each column.
+
+Missing information on the de-normalized data
+
+-   2.57% missing information about Alcohol by volume of the beer (ABV).
+-   41.7% missing information on International Bitterness Units of the beer (IBU)
 
 ``` r
 sapply(both, function(x) {sum(is.na(x))})
@@ -183,8 +200,10 @@ sapply(both, function(x) {sum(is.na(x))})
     ##     Ounces  Breweries       City      State 
     ##          0          0          0          0
 
-4. Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
---------------------------------------------------------------------------------------------------------------------
+### 4. Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
+
+-   Median Alcohol by volume helps US Beer crafters to decide what should the concentration of the alcohol in the beers for their new factory.
+-   Median International Bitterness Units helps US Beer crafters to decide the bitterness taste choices by the users in the respective regions.
 
 ``` r
 #consolidate ABV and IBU data into one
@@ -217,8 +236,9 @@ p.IBU
 
 ![](Beer_Case_Study_files/figure-markdown_github/Question_4-2.png)
 
-5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
-------------------------------------------------------------------------------------------------
+### 5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
+
+Oregon has been identified with the most bitter beers with IBU unit of 138 but the most Alcoholic beers have been crafted in CO with ABV units of 0.128
 
 ``` r
 #Determine max ABV and IBU
@@ -243,8 +263,10 @@ maxIBU[, c(1,3)]
     ##   <chr> <dbl>
     ## 1 " OR"   138
 
-6. Summary statistics for the ABV variable
-------------------------------------------
+### 6. Summary statistics for the ABV variable
+
+-   ABV range is from .10% to 12.80%
+-   50% of beers fall within the range of 3.78%-8.23%
 
 ``` r
 # Output summary of ABV
@@ -254,8 +276,13 @@ summary(both$ABV)
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
     ## 0.00100 0.05000 0.05600 0.05977 0.06700 0.12800      62
 
-7. Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
------------------------------------------------------------------------------------------------------------------------
+### 7. Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+
+-   We could see that there is some linear relationship with between the IBU (bitterness value) and the ABV (Alcohol by volume) based on the scatter plot. An approximation was created with the a trendline:
+
+-   -   𝐼𝐵𝑈 ≈1282(𝐴𝐵𝑉)−34
+
+-   Exact inference can be drawn only after a causal study on the beers’ values.
 
 ``` r
 # Create data set with no NAs
@@ -273,3 +300,8 @@ outputlink<- lmABV_IBU[,3:4]
 linkData.data <- "Beer_Case_Study_files/ABV_IBU_link.csv"
 write.csv(outputlink, file = linkData.data)
 ```
+
+### Conclusion
+
+-   Based on the current data, it may be advantageous to open a new brewery in one of the locations shown on the map. A darker color represents a state with a lower number of current breweries as well as less nearby competition.
+-   The target product should be in the higher ABV range of 7-10% due to current market saturation.
